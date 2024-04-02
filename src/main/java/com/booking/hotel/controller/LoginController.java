@@ -31,7 +31,6 @@ public class LoginController {
 
         baseResponse.setData(token);
 
-
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
 

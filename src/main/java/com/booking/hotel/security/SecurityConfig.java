@@ -48,23 +48,10 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).
                 authorizeHttpRequests(author -> {
-                    author.requestMatchers("/login/**", "/file/**").permitAll();
-                    author.requestMatchers("/product").permitAll();
+                    author.requestMatchers("/login/**", "/file/**", "/room/**").permitAll();
                 })
                 .addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
 
-//        return http.csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/login/**", "/file/**").permitAll()
-//                .requestMatchers("/product").permitAll()
-////                .requestMatchers(HttpMethod.POST,"/admin").hasRole("USER")
-//                .anyRequest().authenticated()
-//                .and()
-//                .addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
     }
-
 }
