@@ -2,6 +2,8 @@ package com.booking.hotel.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity(name = "users")
 public class UsersEntity {
 
@@ -21,6 +23,9 @@ public class UsersEntity {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private RolesEntity role;
+
+    @OneToMany(mappedBy="user")
+    private List<BookingEntity> bookings;
 
     public int getId() {
         return id;
@@ -60,5 +65,13 @@ public class UsersEntity {
 
     public void setRole(RolesEntity role) {
         this.role = role;
+    }
+
+    public List<BookingEntity> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<BookingEntity> bookings) {
+        this.bookings = bookings;
     }
 }
