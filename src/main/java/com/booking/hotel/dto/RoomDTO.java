@@ -1,5 +1,11 @@
 package com.booking.hotel.dto;
 
+import com.booking.hotel.payload.request.BookingRequest;
+import org.apache.commons.lang3.RandomStringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoomDTO {
     private int id;
 
@@ -8,6 +14,16 @@ public class RoomDTO {
     private double roomPrice;
 
     private String image;
+
+    private List<BookingDto> bookings;
+
+    public List<BookingDto> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<BookingDto> bookings) {
+        this.bookings = bookings;
+    }
 
     public String getImage() {
         return image;
@@ -49,4 +65,6 @@ public class RoomDTO {
         // Xây dựng đường dẫn đầy đủ
         this.image = basePath + imageName;
     }
+
+
 }

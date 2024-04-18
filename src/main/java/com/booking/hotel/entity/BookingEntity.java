@@ -1,7 +1,11 @@
 package com.booking.hotel.entity;
 
+import com.booking.hotel.dto.BookingDto;
 import jakarta.persistence.*;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Entity(name = "booking")
 public class BookingEntity {
@@ -15,6 +19,31 @@ public class BookingEntity {
 
     @Column(name = "check_out")
     private LocalDate checkOut;
+    @Column(name = "fullname")
+    private String fullName;
+
+    @Column(name = "email")
+    private String userEmail;
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public void setTotalGuest(int totalGuest) {
+        this.totalGuest = totalGuest;
+    }
 
     @Column(name = "adults")
     private int adults;
@@ -32,10 +61,6 @@ public class BookingEntity {
     @JoinColumn(name = "room_id")
     private RoomEntity room;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UsersEntity user;
-
     public void calculateTotalNumberOfGuest() {
         this.totalGuest = this.adults + children;
     }
@@ -49,7 +74,7 @@ public class BookingEntity {
         this.children = children;
         calculateTotalNumberOfGuest();
     }
-
+    
     public int getId() {
         return id;
     }
@@ -85,11 +110,9 @@ public class BookingEntity {
     public int getTotalGuest() {
         return totalGuest;
     }
-
-    public void setTotalGuest(int totalGuest) {
-        this.totalGuest = totalGuest;
+    public void setTotalGuest() {
+        this.totalGuest = getAdults() + getChildren();
     }
-
     public String getConfirmationCode() {
         return confirmationCode;
     }
@@ -106,11 +129,4 @@ public class BookingEntity {
         this.room = room;
     }
 
-    public UsersEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UsersEntity user) {
-        this.user = user;
-    }
 }

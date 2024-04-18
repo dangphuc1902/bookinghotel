@@ -7,6 +7,7 @@ import com.booking.hotel.payload.request.RoomRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RoomServiceImp {
 
@@ -21,4 +22,5 @@ public interface RoomServiceImp {
     boolean updateRoom(RoomRequest roomRequest);
 
     RoomDTO getRoomById(int id);
+    Optional<RoomEntity> getRoomByID(int id);
 }

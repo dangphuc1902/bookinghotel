@@ -24,9 +24,6 @@ public class UsersEntity {
     @JoinColumn(name = "role_id")
     private RolesEntity role;
 
-    @OneToMany(mappedBy="user")
-    private List<BookingEntity> bookings;
-
     public int getId() {
         return id;
     }
@@ -67,11 +64,4 @@ public class UsersEntity {
         this.role = role;
     }
 
-    public List<BookingEntity> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<BookingEntity> bookings) {
-        this.bookings = bookings;
-    }
 }

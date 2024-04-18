@@ -4,4 +4,5 @@ import com.booking.hotel.entity.UsersEntity;
 
 public interface UserServiceImp {
     UsersEntity addUser();
+    UsersEntity getUserById(int userId);
 }

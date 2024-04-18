@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class RoomServiec implements RoomServiceImp {
+public class RoomService implements RoomServiceImp {
 
     @Autowired
     RoomRepository roomRepository;
@@ -116,6 +116,11 @@ public class RoomServiec implements RoomServiceImp {
         roomDTO.setRoomPrice(roomEntity.getRoomPrice());
         roomDTO.setImageDynamic(roomEntity.getImage());
         return roomDTO;
+    }
+
+    @Override
+    public Optional<RoomEntity> getRoomByID(int id) {
+        return Optional.of(roomRepository.findById(id).get());
     }
 
     public RoomEntity roomById(int id) {
