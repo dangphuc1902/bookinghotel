@@ -48,7 +48,7 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).
                 authorizeHttpRequests(author -> {
-                    author.requestMatchers("/login/**", "/file/**", "/room/**").permitAll();
+                    author.requestMatchers("/login/**", "/file/**", "/room/**", "/bookings/**").permitAll();
                 })
                 .addFilterBefore(customJwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

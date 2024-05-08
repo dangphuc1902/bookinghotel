@@ -1,7 +1,9 @@
 package com.booking.hotel.controller;
 
+import com.booking.hotel.entity.UsersEntity;
 import com.booking.hotel.payload.request.LoginRequest;
 import com.booking.hotel.payload.response.BaseResponse;
+import com.booking.hotel.repository.UsersRepository;
 import com.booking.hotel.service.imp.LoginServiceImp;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
