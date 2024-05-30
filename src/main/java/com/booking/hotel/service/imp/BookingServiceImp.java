@@ -15,4 +15,8 @@ public interface BookingServiceImp {
     BookingDTO getBookingByConfirmationCode(String confirmationCode);
 
     boolean deleteBooking(int bookingId);
+
+    List<BookingDTO> getBookingByEmail(String email);
+
+    void updateEmail(String email, String updateEmail);
 }

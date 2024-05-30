@@ -117,4 +117,12 @@ public class BookingDTO {
         this.guestName = guestName;
         this.room = room;
     }
+
+    public BookingDTO(int id, LocalDate checkInDate, LocalDate checkOutDate, String bookingConfirmationCode, RoomDTO room) {
+        this.id = id;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.bookingConfirmationCode = bookingConfirmationCode;
+        this.room = room;
+    }
 }

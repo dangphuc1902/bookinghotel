@@ -78,6 +78,25 @@ public class BookingService implements BookingServiceImp {
         return isSuccess;
     }
 
+    @Override
+    public List<BookingDTO> getBookingByEmail(String email) {
+        List<BookingEntity> bookingEntities = bookingRepository.findByGuestEmail(email);
+        List<BookingDTO> bookingDTOS = bookingEntities
+                .stream()
+                .map(
+                        booking -> new BookingDTO(
+                        booking.getId(),
+                        booking.getCheckInDate(),
+                        booking.getCheckOutDate(),
+                        booking.getConfirmationCode(),
+                        new RoomDTO(
+                                booking.getRoom().getId()
+                                ,booking.getRoom().getRoomType()
+                        )
+                )).toList();
+        return bookingDTOS;
+    }
+
     private BookingDTO getBookingDto(BookingEntity booking){
         RoomDTO roomDTO = new RoomDTO(
                 booking.getRoom().getId(),
@@ -97,6 +116,31 @@ public class BookingService implements BookingServiceImp {
                 booking.getGuestFullName(),
                 roomDTO
         );
+    }
+
+    @Override
+    public void updateEmail(String email, String updateEmail){
+        List<BookingEntity> bookingEntities = bookingRepository.findByGuestEmail(email);
+        if (!bookingEntities.isEmpty()){
+            System.out.println(15);
+            bookingEntities.forEach(
+                    booking -> {
+                        System.out.println(booking.getGuestEmail());
+                        BookingEntity entity = new BookingEntity(
+                                booking.getId(),
+                                booking.getCheckInDate(),
+                                booking.getCheckOutDate(),
+                                booking.getAdults(),
+                                booking.getChildren(),
+                                booking.getTotalGuest(),
+                                booking.getConfirmationCode(),
+                                updateEmail,
+                                booking.getGuestFullName(),
+                                booking.getRoom()
+                        );
+                        bookingRepository.save(entity);
+                    });
+        }
     }
 
 

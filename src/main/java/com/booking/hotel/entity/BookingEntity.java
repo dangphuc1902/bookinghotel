@@ -125,4 +125,19 @@ public class BookingEntity {
     public void setGuestFullName(String guestFullName) {
         this.guestFullName = guestFullName;
     }
+
+    public BookingEntity(){}
+
+    public BookingEntity(int id, LocalDate checkInDate, LocalDate checkOutDate, int adults, int children, int totalGuest, String confirmationCode, String guestEmail, String guestFullName, RoomEntity room) {
+        this.id = id;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.adults = adults;
+        this.children = children;
+        this.totalGuest = totalGuest;
+        this.confirmationCode = confirmationCode;
+        this.guestEmail = guestEmail;
+        this.guestFullName = guestFullName;
+        this.room = room;
+    }
 }

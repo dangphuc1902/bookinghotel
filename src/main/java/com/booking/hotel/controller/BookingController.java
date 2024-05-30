@@ -1,5 +1,6 @@
 package com.booking.hotel.controller;
 
+import com.booking.hotel.dto.BookingDTO;
 import com.booking.hotel.entity.BookingEntity;
 import com.booking.hotel.exception.InvalidBookingRequestException;
 import com.booking.hotel.exception.ResourceNotFoundException;
@@ -8,11 +9,13 @@ import com.booking.hotel.service.imp.BookingServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/bookings")
-@CrossOrigin
 public class BookingController {
 
     @Autowired
@@ -51,6 +54,15 @@ public class BookingController {
         }catch (ResourceNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @GetMapping("/user/{email}")
+    public ResponseEntity<?> getBookingsByUserEmail(@PathVariable String email){
+        System.out.println(email);
+        List<BookingDTO> bookingDTO = bookingServiceImp.getBookingByEmail(email);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setData(bookingDTO);
+        return ResponseEntity.ok(baseResponse);
     }
 
     @DeleteMapping("/delete/{bookingId}")

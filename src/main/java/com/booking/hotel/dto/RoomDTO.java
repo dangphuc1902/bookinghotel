@@ -71,6 +71,11 @@ public class RoomDTO {
         this.bookingDTOS = bookingDTOS;
     }
 
+    public RoomDTO(int id, String roomType) {
+        this.id = id;
+        RoomType = roomType;
+    }
+
     // Phương thức để thiết lập đường dẫn ảnh động
     public void setImageDynamic(String imageName) {
         // Đường dẫn cơ bản của ảnh
